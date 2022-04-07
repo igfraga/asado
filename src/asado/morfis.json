@@ -1,0 +1,86 @@
+[
+    {
+        "name": "entrana",
+        "unit": "lb",
+        "weight": 1,
+        "category": "meat",
+        "recMin": 2
+    },
+    {
+        "name": "colita",
+        "unit": "lb",
+        "weight": 1,
+        "category": "meat",
+        "recMin": 2
+    },
+    {
+        "name": "bife de chorizo",
+        "unit": "lb",
+        "weight": 1,
+        "category": "meat",
+        "recMin": 2
+    },
+    {
+        "name": "vacio",
+        "unit": "lb",
+        "weight": 1,
+        "category": "meat",
+        "recMin": 2
+    },
+    {
+        "name": "molleja",
+        "unit": "lb",
+        "weight": 1,
+        "category": "achura",
+        "recMin": 1
+    },
+    {
+        "name": "chorizo",
+        "unit": null,
+        "weight": 0.5,
+        "category": "achura",
+        "recMin": 2
+    },
+    {
+        "name": "morcilla",
+        "unit": null,
+        "weight": 0.5,
+        "category": "achura",
+        "recMin": 1
+    },
+    {
+        "name": "zucchini",
+        "unit": null,
+        "weight": 0.3,
+        "category": "veggie",
+        "recMin": 1
+    },
+    {
+        "name": "bell pepper",
+        "unit": null,
+        "weight": 0.3,
+        "category": "veggie",
+        "recMin": 2
+    },
+    {
+        "name": "onion",
+        "unit": null,
+        "weight": 0.3,
+        "category": "veggie",
+        "recMin": 1
+    },
+    {
+        "name": "baguette",
+        "unit": null,
+        "weight": 0.5,
+        "category": "other",
+        "recMin": 1
+    },
+    {
+        "name": "chimichurri",
+        "unit": null,
+        "weight": 0.0,
+        "category": "extra",
+        "recMin": 1
+    }
+]
