@@ -8,7 +8,7 @@ interface FoodInfo {
   recMin: number;
 }
 
-interface FoodItem {
+export interface FoodItem {
   name: string;
   quantity: number;
   unit: "lb" | null;
@@ -40,10 +40,6 @@ export function calculate(numPersons: number): FoodItem[] {
     const cfoods = foods.filter((food) => food.category === cat);
 
     const avgFus = fus / cfoods.length;
-
-    console.log(cat);
-    console.log(fus);
-    console.log(avgFus);
 
     let fusLeft = fus;
     for (const foodInfo of cfoods) {
@@ -77,5 +73,3 @@ export function calculate(numPersons: number): FoodItem[] {
 
   return items;
 }
-
-console.log(calculate(5));
