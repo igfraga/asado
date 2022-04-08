@@ -1,5 +1,17 @@
 import morfis from "./morfis.json";
 
+const allFoods = new Map<string, FoodInfo>();
+
+for (const morfi of morfis) {
+  allFoods.set(morfi.name, {
+    name: morfi.name,
+    unit: morfi.unit === "lb" ? "lb" : null,
+    weight: morfi.weight,
+    category: morfi.category,
+    recMin: morfi.recMin,
+  });
+}
+
 interface FoodInfo {
   name: string;
   weight: number;
@@ -14,15 +26,16 @@ export interface FoodItem {
   unit: "lb" | null;
 }
 
-const foods: FoodInfo[] = [];
-for (const morfi of morfis) {
-  foods.push({
-    name: morfi.name,
-    unit: morfi.unit === "lb" ? "lb" : null,
-    weight: morfi.weight,
-    category: morfi.category,
-    recMin: morfi.recMin,
-  });
+/// Returns the value in food units of 'foodItem'
+export function foodUnits(foodItem: FoodItem) : number {
+  const finfo = allFoods.get(foodItem.name);
+  if(finfo === undefined) {
+    throw Error("No such food");
+  }
+  if(finfo.unit !== foodItem.unit) {
+    throw Error("Bad food item");
+  }
+  return finfo.weight * foodItem.quantity;
 }
 
 // "funits" are food units
@@ -37,7 +50,7 @@ export function calculate(numPersons: number): FoodItem[] {
   funitsByCat.set("veggie", totalFunits * 0.3);
 
   for (const [cat, fus] of funitsByCat) {
-    const cfoods = foods.filter((food) => food.category === cat);
+    const cfoods = Array.from(allFoods.values()).filter((food) => food.category === cat);
 
     const avgFus = fus / cfoods.length;
 
