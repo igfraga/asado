@@ -12,10 +12,12 @@ for (const morfi of morfis) {
   });
 }
 
+type Unit = "lb" | null;
+
 interface FoodInfo {
   name: string;
   weight: number;
-  unit: "lb" | null;
+  unit: Unit;
   category: string;
   recMin: number;
 }
@@ -23,7 +25,21 @@ interface FoodInfo {
 export interface FoodItem {
   name: string;
   quantity: number;
-  unit: "lb" | null;
+  unit: Unit;
+}
+
+function unitMod(unit: Unit) {
+  if(unit === "lb") {
+    return 0.5;
+  }
+  else {
+    return 1;
+  }
+}
+
+function toNearest(quantity: number, unit: Unit) : number {
+  const mod = unitMod(unit);
+  return Math.round(quantity / mod) * mod;
 }
 
 /// Returns the value in food units of 'foodItem'
@@ -62,14 +78,18 @@ export function calculate(numPersons: number): FoodItem[] {
       let quantity = 0;
       if (foodInfo.recMin * foodInfo.weight < avgFus) {
         // need more than recMin
-        quantity = avgFus / foodInfo.weight;
+        quantity = toNearest(avgFus / foodInfo.weight, foodInfo.unit);
       } else if(foodInfo.recMin * foodInfo.weight > fusLeft) {
         // need less than recMin
-        quantity = fusLeft / foodInfo.weight;
+        quantity = toNearest(fusLeft / foodInfo.weight, foodInfo.unit);
       }
       else {
         // recMin makes sens
         quantity = foodInfo.recMin
+      }
+
+      if(quantity === 0) {
+        continue;
       }
 
       const item: FoodItem = {

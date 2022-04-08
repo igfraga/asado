@@ -49,17 +49,16 @@ export function BuilderForm(props: Props) {
       </Ch.Flex>
 
       <Ch.Button colorScheme="blue" onClick={onAccept}>
-        Aceptar
+        Calcular
       </Ch.Button>
     </Ch.Flex>
   );
 }
 
-function displayFoodItem(foodItem: FoodItem) : string {
-  if(foodItem.unit === "lb") {
+function displayFoodItem(foodItem: FoodItem): string {
+  if (foodItem.unit === "lb") {
     return `${foodItem.quantity}lbs ${foodItem.name}`;
-  }
-  else if(foodItem.unit === null) {
+  } else if (foodItem.unit === null) {
     return `${foodItem.quantity} ${foodItem.name}`;
   }
   throw Error("Bad food item");
@@ -73,18 +72,19 @@ export function ResultArea(props: ResultAreaProps) {
   return (
     <Ch.UnorderedList textAlign="start" spacing="2px" paddingLeft="6px">
       {props.foodItems.map(function (item: FoodItem) {
-        return <Ch.ListItem key={item.name}>{displayFoodItem(item)}</Ch.ListItem>;
+        return (
+          <Ch.ListItem key={item.name}>{displayFoodItem(item)}</Ch.ListItem>
+        );
       })}
     </Ch.UnorderedList>
   );
 }
 
 export function Builder() {
-
   const [foodItems, setFoodItems] = useState<FoodItem[]>([]);
 
   const onCalculate = function (numPeople: number) {
-    setFoodItems(calculate(numPeople))
+    setFoodItems(calculate(numPeople));
   };
 
   return (
@@ -94,11 +94,22 @@ export function Builder() {
       width="500px"
       backgroundColor="#F1F1F1"
     >
+      <Ch.Text
+        fontStyle="italic"
+        fontWeight="bold"
+        fontSize="50px"
+        color="slategray"
+        textAlign="start"
+        paddingLeft="10px"
+      >
+        Pepasado
+      </Ch.Text>
+
       <BuilderForm onCalculate={onCalculate} />
 
       <Ch.Box height="2px" backgroundColor="#545454" marginBottom="10px" />
 
-      <ResultArea foodItems={foodItems}/>
+      <ResultArea foodItems={foodItems} />
     </Ch.Box>
   );
 }

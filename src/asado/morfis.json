@@ -1,6 +1,6 @@
 [
     {
-        "name": "entrana",
+        "name": "entraña",
         "unit": "lb",
         "weight": 1,
         "category": "meat",
@@ -63,7 +63,7 @@
         "recMin": 2
     },
     {
-        "name": "onion",
+        "name": "cebolla",
         "unit": null,
         "weight": 0.3,
         "category": "veggie",
